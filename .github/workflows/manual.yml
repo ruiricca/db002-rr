@@ -10,9 +10,19 @@ on:
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Servidor'
+        description: 'ligacao'
         # Default value if no value is explicitly provided
         default: '---'
+        # Input has to be provided for the workflow to run
+        required: true
+        # The data type of the input
+        type: string
+
+      query:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Criar DB'
+        # Default value if no value is explicitly provided
+        default: 'revistas.sql'
         # Input has to be provided for the workflow to run
         required: true
         # The data type of the input
@@ -28,5 +38,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+    - uses: actions/checkout@v4
+    - name: check folder
+      run: ls -l
+    - name: criar db
+      run: mysql -h ${{ inputs.name}} -u ${{ secrets.USER }} -p ${{ secrets.PASS }} < ${{ github.event.inputs.query }}
