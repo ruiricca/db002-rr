@@ -43,4 +43,4 @@ jobs:
     - name: check folder
       run: ls -l
     - name: criar db
-      run: mysql -h ${{ inputs.name}} -u ${{ secrets.USER }} -p ${{ secrets.PASS }} < ${{ github.event.inputs.query }}
+      run: mysql -h ${{ inputs.name}} -u ${{ secrets.USER }} -p'${{ secrets.PASS }}' < ${{ github.event.inputs.query }}
