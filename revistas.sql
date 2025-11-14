@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS revistas;
 CREATE DATABASE revistas;
 USE revistas;
 
